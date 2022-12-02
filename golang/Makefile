@@ -5,7 +5,6 @@ build-init:
 
 build-local:
 	docker buildx build --builder=ferretdb \
-		--platform=linux/amd64 \
 		--tag=golang-local \
 		--load .
 
