@@ -9,3 +9,6 @@ RUN gzip -d /mongo.gz
 RUN chmod +x /mongo
 
 EXPOSE 27017
+
+# https://github.com/opencontainers/image-spec/blob/main/annotations.md
+LABEL org.opencontainers.image.source="https://github.com/FerretDB/deps"
