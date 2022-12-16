@@ -1,17 +1,19 @@
 FROM ubuntu:latest
 
 RUN apt-get update && \
-        apt-get -y install wget libcurl4-openssl-dev libssl-dev libffi-dev build-essential gcc gzip
+        apt-get -y install build-essential gcc git && \
+        apt-get -y install libcurl4-openssl-dev libssl-dev libffi-dev liblzma-dev python3-pip
 
-RUN wget --no-check-certificate --no-proxy -O /tmp/mongo.gz https://sn7jsntvje0l.s3.eu-central-1.amazonaws.com/mongo-linux-x86_64-debian11-6.0.3.gz
-RUN gzip -d /tmp/mongo.gz
+RUN git clone https://github.com/mongodb/mongo.git
 
 WORKDIR /mongo
 
-RUN mv /tmp/mongo .
-RUN chmod +x mongo
+RUN python3 -m pip install -r etc/pip/compile-requirements.txt
 
-RUN cp mongo /usr/bin
+# note we can use the -j1 parameter to use less memory during building
+RUN python3 buildscripts/scons.py install-mongo
+
+RUN mv build/install/bin/mongo /usr/bin
 
 EXPOSE 27017
 
