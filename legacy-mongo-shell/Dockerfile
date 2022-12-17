@@ -1,16 +1,24 @@
-FROM ubuntu:latest
+# sync tag with git clone's argument below
+FROM mongo:6.0.3
 
-RUN apt-get update && \
-        apt-get -y install build-essential gcc git && \
-        apt-get -y install libcurl4-openssl-dev libssl-dev libffi-dev liblzma-dev python3-pip
-
-RUN git clone https://github.com/mongodb/mongo.git
+RUN apt update
+RUN apt install -y \
+    git \
+    python3-pip \
+    libssl-dev \
+    liblzma-dev \
+    libcurl4-openssl-dev
 
 WORKDIR /mongo
 
+# sync tag with image tag above
+RUN git clone -b r6.0.3 --depth 1 --progress https://github.com/mongodb/mongo.git .
+
 RUN python3 -m pip install -r etc/pip/compile-requirements.txt
 
-# note we can use the -j1 parameter to use less memory during building
+# If you get "g++: fatal error: Killed signal terminated program cc1plus" or a similar error,
+# increase the amount of memory available to Docker,
+# or add `-j1` parameter to build sequentially.
 RUN python3 buildscripts/scons.py install-mongo
 
 RUN mv build/install/bin/mongo /usr/bin
