@@ -15,8 +15,6 @@ RUN python3 buildscripts/scons.py install-mongo
 
 RUN mv build/install/bin/mongo /usr/bin
 
-EXPOSE 27017
-
 CMD mongo
 
 # https://github.com/opencontainers/image-spec/blob/main/annotations.md
