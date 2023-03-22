@@ -21,6 +21,7 @@ RUN python3 -m pip install -r etc/pip/compile-requirements.txt
 # or add `-j1` parameter to build sequentially.
 RUN python3 buildscripts/scons.py install-mongo
 
+
 FROM mongo:6.0.5
 
 COPY --from=build /mongo/build/install/bin/mongo /usr/bin
