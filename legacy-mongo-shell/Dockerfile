@@ -28,8 +28,11 @@ COPY --from=build /mongo/build/install/bin/mongo /usr/bin
 
 RUN mkdir -p /tests/mongo
 
+#
 RUN ln -sv /usr/bin/mongo /tests/mongo/mongo
 
+# We need to set WORKDIR as the root directory of the repository so that various
+# jstest files can load libs etc., as they use a relative path.
 WORKDIR /tests/mongo
 
 CMD []
