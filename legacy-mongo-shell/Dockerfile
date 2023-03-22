@@ -28,7 +28,6 @@ COPY --from=build /mongo/build/install/bin/mongo /usr/bin
 
 RUN mkdir -p /tests/mongo
 
-#
 RUN ln -sv /usr/bin/mongo /tests/mongo/mongo
 
 # We need to set WORKDIR as the root directory of the repository so that various
