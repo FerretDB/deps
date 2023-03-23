@@ -24,16 +24,13 @@ RUN python3 buildscripts/scons.py install-mongo
 
 FROM mongo:6.0.5
 
+RUN mkdir /mongo
+
 COPY --from=build /mongo/build/install/bin/mongo /usr/bin
 
-RUN mkdir -p /tests/mongo
+RUN ln -sv /usr/bin/mongo /mongo/mongo
 
-RUN ln -sv /usr/bin/mongo /tests/mongo/mongo
-
-# We need to set WORKDIR as the root directory so that jstest files can load libs etc.,
-# as they use a relative path. We will later mount the jstests directory as a volume
-# in the docker-compose.yml file.
-WORKDIR /tests/mongo
+WORKDIR /mongo
 
 CMD []
 ENTRYPOINT ["mongo"]
