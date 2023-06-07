@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM golang:1.20.4
+FROM golang:1.20.5
 
 RUN <<EOF
 set -ex
