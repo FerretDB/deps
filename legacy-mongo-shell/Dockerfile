@@ -19,8 +19,7 @@ RUN python3 -m pip install -r etc/pip/compile-requirements.txt
 # If you get "g++: fatal error: Killed signal terminated program cc1plus" or a similar error,
 # increase the amount of memory available to Docker,
 # or add `-j1` parameter to build sequentially.
-RUN python3 buildscripts/scons.py install-mongo
-
+RUN python3 buildscripts/scons.py install-mongo --linker=gold --disable-warnings-as-errors
 
 FROM mongo:7.0.0
 
