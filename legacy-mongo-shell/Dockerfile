@@ -1,5 +1,5 @@
 # sync tag with git clone's argument below
-FROM mongo:7.0.8 AS build
+FROM mongo:7.0.9 AS build
 
 RUN apt update
 RUN apt install -y \
@@ -21,7 +21,7 @@ RUN python3 -m pip install -r etc/pip/compile-requirements.txt
 # or add `-j1` parameter to build sequentially.
 RUN python3 buildscripts/scons.py install-mongo --linker=gold --disable-warnings-as-errors
 
-FROM mongo:7.0.8
+FROM mongo:7.0.9
 
 COPY --from=build /mongo/build/install/bin/mongo /usr/bin
 RUN ln -sv /usr/bin/mongo /mongo
