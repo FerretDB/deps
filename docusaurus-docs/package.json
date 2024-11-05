@@ -16,7 +16,7 @@
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
     "@cmfcmf/docusaurus-search-local": "^1.2.0",
-    "@docusaurus/core": "^3.5.2",
+    "@docusaurus/core": "^3.6.0",
     "@docusaurus/preset-classic": "^3.5.2",
     "@docusaurus/theme-mermaid": "^3.5.2",
     "plugin-image-zoom": "^1.2.0",
