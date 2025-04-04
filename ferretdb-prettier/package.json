@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "prettier": "3.3.3"
+    "prettier": "3.5.3"
   },
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   }
 }
