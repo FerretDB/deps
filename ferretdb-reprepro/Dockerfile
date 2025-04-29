@@ -1,4 +1,4 @@
-FROM debian:experimental-20240812
+FROM debian:experimental-20250428
 
 RUN apt-get update && \
   apt-get install -yq ssh && \
