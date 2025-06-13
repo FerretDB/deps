@@ -1,4 +1,4 @@
-FROM node:22.14.0-alpine
+FROM node:24.1.0-alpine
 
 WORKDIR /workdir/docusaurus-docs
 COPY *.json .
