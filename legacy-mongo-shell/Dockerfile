@@ -1,5 +1,5 @@
 # sync tag with git clone's argument below
-FROM mongo:8.0.4 AS build
+FROM mongo:8.0.10 AS build
 
 RUN apt update
 RUN apt install -y \
@@ -14,7 +14,7 @@ RUN apt install -y \
 WORKDIR /mongo
 
 # sync tag with image tag above
-RUN git clone -b r8.0.4 --depth 1 --progress https://github.com/mongodb/mongo.git .
+RUN git clone -b r8.0.10 --depth 1 --progress https://github.com/mongodb/mongo.git .
 
 # RUN python3 -m venv python3-venv
 # RUN ./python3-venv/bin/pip install poetry
@@ -25,7 +25,7 @@ RUN poetry install --no-root --sync
 # or add `-j1` parameter to build sequentially.
 RUN python3 buildscripts/scons.py install-mongo --linker=gold --disable-warnings-as-errors
 
-FROM mongo:8.0.4
+FROM mongo:8.0.10
 
 COPY --from=build /mongo/build/install/bin/mongo /usr/bin
 RUN ln -sv /usr/bin/mongo /mongo
