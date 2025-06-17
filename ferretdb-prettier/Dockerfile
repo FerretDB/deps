@@ -1,4 +1,4 @@
-FROM node:22.14.0-alpine
+FROM node:24.2.0-alpine
 
 WORKDIR /deps
 COPY *.json .
