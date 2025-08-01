@@ -12,6 +12,7 @@ updates:
   - package-ecosystem: "docker"
     directories:
       - "/docusaurus-docs"
+      - "/ferretdb-pngcrush"
       - "/ferretdb-prettier"
       - "/ferretdb-reprepro"
       - "/ferretdb-textlint"
